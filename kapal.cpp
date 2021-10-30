@@ -4,24 +4,9 @@
 GLfloat gerak, water;
 int i,radius,jumlah_titik,x_tengah,y_tengah;
 
-/* 
-TA Grafika Komputer - Kelas 4H Kelompok 8
-1. Ahmad Soleh Edon               - 065119200
-2. Anida Khairunnisa              - 065119214
-3. Muhammad Refansyach Sugianto   - 065119226
-
-Implementasi Materi
-- Objek 2D
-- Transformasi
-- State Matrix
-- Callback
-
-Kapal Laut
-*/
-
-// Gambar kapal 
+// Draw the Ship, Kapal means ship
 void kapal(){
-	glScaled(20, 20, 0); //Transformasi
+	glScaled(20, 20, 0); //Transform
     //lt 2 kapal
 	glColor3f(0.5, 0.5, 0.5);
 	glBegin(GL_POLYGON);
@@ -240,7 +225,7 @@ void kapal(){
 	
 }
 
-//bikin air dan gelombangnya :v
+//Draw Sea water and waves
 void air(){
 	glPushMatrix(); 
 		glTranslated(water, 0, 0.0); 
@@ -272,7 +257,7 @@ void air(){
 	glPopMatrix();
 }
 
-//Bikin matahari gengs
+//Draw a Sun
 void sun(){
 	glBegin(GL_POLYGON);
 		glColor3f(1.0, 1.0, 0.0);
@@ -291,23 +276,23 @@ void sun(){
 
 }
 
-//Ini void biar air dan kapalnya gerak
+//This Function is to make the ship and water moves
 void idle(){
-	water -= 12.5; //gerak air
+	water -= 12.5; //gerak air | water movement
 	if (water <= -20)
 		water = 0.75;
 
-	if (gerak>1000){ //relokasi kapal
+	if (gerak>1000){ //relokasi kapal | ship relocate
 		gerak=-480;
 	}
 	else{
-		gerak+=0.096; //kecepatan gerak kapal
+		gerak+=0.096; //kecepatan gerak kapal | ship movement speed
 	}
 	glutPostRedisplay();
 
 }
 
-//ini void isinya buat nampilin objek ke layar
+//Fuction to show every object to the screen or window
 void layar(){
 	glPushMatrix();
 		glTranslatef(gerak, 70, 0.0);
@@ -322,7 +307,7 @@ void layar(){
 		air();
 }
 
-//ini void untuk proses layar buat siap pakai
+//make the ship and window ready to use
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	layar();
